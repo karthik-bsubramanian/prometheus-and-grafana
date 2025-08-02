@@ -1,9 +1,11 @@
 import client from "prom-client";
 import express from "express";
 import { requestCountMiddleWare } from "./monitoring/requestCounter.js";
+import { activeUserGaugeMiddleware } from "./monitoring/activeUserGauge.js";
 const app = express();
 
 app.use(requestCountMiddleWare);
+app.use(activeUserGaugeMiddleware);
 
 app.get('/get',(req,res)=>{
     res.json({
